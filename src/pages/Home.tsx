@@ -1,11 +1,13 @@
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Check, ArrowRight, TrendingUp, DollarSign, Users, Star } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,9 +18,44 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const elementId = entry.target.getAttribute('data-animate-id');
+            if (elementId) {
+              setVisibleElements(prev => new Set([...prev, elementId]));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    // Observe all elements with scroll-animate class
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((element) => {
+      observerRef.current?.observe(element);
+    });
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
   // Calculate border and shadow opacity based on scroll position
   const borderOpacity = Math.min(scrollY / 200, 1); // Border appears over 200px of scroll
   const shadowOpacity = Math.min(scrollY / 200, 1); // Shadow appears over 200px of scroll
+
+  // Helper function to get animation class
+  const getAnimationClass = (elementId: string) => {
+    return visibleElements.has(elementId) ? 'scroll-animate animate-in' : 'scroll-animate';
+  };
   return (
     <div className="min-h-screen w-full bg-white text-gray-900 font-primary">
       {/* Floating Pill Navbar */}
@@ -76,12 +113,12 @@ const Home = () => {
       </header>
 
       {/* Hero */}
-      <section className="text-center pt-40 pb-32 px-6 max-w-5xl mx-auto">
+      <section className={`text-center pt-40 pb-32 px-6 max-w-5xl mx-auto ${getAnimationClass('hero')}`} data-animate-id="hero">
         <div className="inline-flex items-center justify-center mb-8">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-full px-6 py-3 flex items-center gap-3 shadow-sm">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <p className="uppercase text-xs font-semibold tracking-wider text-green-700">Save your money now!</p>
-            <svg className="w-3 h-3 text-green-600 transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 text-green-600 transform rotate-[135deg]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
           </div>
@@ -92,15 +129,12 @@ const Home = () => {
         <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
           Take control of your finances easily. Track expenses, manage budgets, make goals and build better habits while you study!
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <div className="flex justify-center mb-16">
           <Link to="/login" className="transition-all duration-500 hover:scale-105 hover:-translate-y-1">
-            <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+            <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-12 py-4 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-full">
               Get started free
             </Button>
           </Link>
-          <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-green-400 hover:bg-green-50 hover:text-green-600 px-8 py-4 text-lg font-semibold transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:shadow-lg">
-            Watch demo
-          </Button>
         </div>
         <div className="text-center">
           <p className="text-sm text-gray-500">
@@ -118,7 +152,7 @@ const Home = () => {
       </section>
 
       {/* Features section */}
-      <section id="features" className="py-24 px-8 max-w-7xl mx-auto relative">
+      <section id="features" className={`py-24 px-8 max-w-7xl mx-auto relative ${getAnimationClass('features')}`} data-animate-id="features">
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-transparent to-emerald-50/30 rounded-3xl"></div>
         <div className="relative z-10">
           <div className="text-center mb-16">
@@ -190,7 +224,7 @@ const Home = () => {
 
 
       {/* Benefits section */}
-      <section id="benefits" className="py-24 px-8 max-w-7xl mx-auto relative">
+      <section id="benefits" className={`py-24 px-8 max-w-7xl mx-auto relative ${getAnimationClass('benefits')}`} data-animate-id="benefits">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-green-50/30 rounded-3xl"></div>
         <div className="relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -262,7 +296,7 @@ const Home = () => {
 
 
       {/* Footer */}
-      <footer className="py-16 px-8 relative overflow-hidden">
+      <footer className={`py-16 px-8 relative overflow-hidden ${getAnimationClass('footer')}`} data-animate-id="footer">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 via-white/90 to-gray-50/80"></div>
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="bg-white/60 backdrop-blur-md border border-white/30 rounded-3xl p-8 shadow-lg text-center">
