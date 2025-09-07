@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal UI Design System */
+
+@layer base {
+  :root {
+    /* Minimal UI Dark Theme */
+    --bg: #0f1113;
+    --panel: #141518;
+    --muted: #9aa0a6;
+    --accent: #8b7bff;
+    --accent-2: #ffb86b;
+    --card: #0f1113;
+    --glass: rgba(255,255,255,0.02);
+    --glass-2: rgba(255,255,255,0.03);
+
+    /* Legacy support for existing components */
+    --background: 220 15% 8%;
+    --background-secondary: 220 12% 12%;
+    --background-tertiary: 220 10% 16%;
+    --foreground: 220 8% 95%;
+    --foreground-muted: 220 6% 70%;
+    --foreground-subtle: 220 4% 60%;
+
+    --card: 220 12% 12%;
+    --card-foreground: 220 8% 95%;
+
+    --popover: 220 12% 12%;
+    --popover-foreground: 220 8% 95%;
+
+    /* Minimal UI Green Primary */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 220 8% 95%;
+
+    --muted: 220 10% 16%;
+    --muted-foreground: 220 4% 60%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Minimal UI Semantic Colors */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 142 76% 36%;
+
+    --radius: 0.5rem;
+
+    /* Minimal UI Gradients */
+    --gradient-card: linear-gradient(135deg, #0f1114, #0c0d0f);
+    --gradient-primary: linear-gradient(135deg, #16a34a, #059669);
+    --gradient-success: linear-gradient(135deg, #10B981, #06B6D4);
+    --gradient-chart: linear-gradient(180deg, rgba(22, 163, 74, 0.28), transparent);
+
+    /* Minimal UI Shadows */
+    --shadow-card: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    --shadow-primary: 0 0 40px rgba(22, 163, 74, 0.2);
+
+    /* Minimal UI Animations */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sidebar Colors */
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 220 8% 95%;
+    --sidebar-primary: 142 76% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 16%;
+    --sidebar-accent-foreground: 220 8% 95%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 142 76% 36%;
+  }
+
+  .dark {
+    /* Uvodo Dark Theme */
+    --background: 210 11% 15%;
+    --background-secondary: 210 11% 18%;
+    --background-tertiary: 210 11% 22%;
+    --foreground: 210 20% 95%;
+    --foreground-muted: 210 6% 70%;
+    --foreground-subtle: 210 4% 60%;
+
+    --card: 210 11% 18%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 210 11% 18%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 238 100% 67%;
+    --primary-foreground: 210 11% 15%;
+
+    --secondary: 210 11% 22%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 210 11% 22%;
+    --muted-foreground: 210 4% 60%;
+
+    --accent: 238 100% 67%;
+    --accent-foreground: 210 11% 15%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 210 11% 15%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 210 11% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 210 11% 22%;
+    --input: 210 11% 22%;
+    --ring: 238 100% 67%;
+
+    --sidebar-background: 210 11% 15%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 238 100% 67%;
+    --sidebar-primary-foreground: 210 11% 15%;
+    --sidebar-accent: 210 11% 22%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 210 11% 22%;
+    --sidebar-ring: 238 100% 67%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: linear-gradient(180deg, #16171a 0%, #0d0f12 100%);
+    color: #e6e6e9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+}
+
+/* Minimal UI Custom Styles */
+@layer components {
+  .minimal-sidebar {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 12px;
+    padding: 24px 18px;
+    min-height: 720px;
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  .minimal-main {
+    min-height: 720px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  .minimal-rightcol {
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 720px;
+    box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  }
+
+  .minimal-card {
+    flex: 1;
+    padding: 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #0f1114, #0c0d0f);
+    box-shadow: 0 6px 28px rgba(4,6,10,0.6);
+    min-height: 84px;
+    position: relative;
+  }
+
+  .minimal-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #cfcfd2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .minimal-nav-link.active {
+    background: linear-gradient(90deg, rgba(139,123,255,0.12), rgba(255,184,107,0.06));
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  .minimal-nav-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .minimal-search {
+    background: rgba(255,255,255,0.02);
+    padding: 8px 12px;
+    border-radius: 10px;
+    min-width: 260px;
+    color: #bfbfc3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,0.02);
+  }
+
+  .minimal-search input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: #ddd;
+    width: 100%;
+  }
+
+  .minimal-credit-card {
+    background: linear-gradient(180deg, #0b0c0e, #080808);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .minimal-chip {
+    width: 36px;
+    height: 26px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #ffd8a8, #d9c9ff);
+    opacity: 0.9;
+  }
+
+  .minimal-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffd8a8, #d9c9ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .minimal-pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .minimal-pill.done {
+    background: rgba(139,123,255,0.12);
+    color: #cfc9ff;
+  }
+
+  .minimal-pill.pending {
+    background: rgba(255,184,107,0.07);
+    color: #ffd5b0;
+  }
+
+  .minimal-swoosh {
+    width: 28px;
+    height: 8px;
+    background: linear-gradient(90deg, #8b7bff, #ffb86b);
+    border-radius: 999px;
+    transform: rotate(-12deg);
+  }
+}
