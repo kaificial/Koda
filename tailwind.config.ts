@@ -17,8 +17,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'primary': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-				'secondary': ['SF Pro Display', 'Inter', 'sans-serif'],
+				'primary': ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				'secondary': ['Inter', 'system-ui', 'sans-serif'],
+				'display': ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+				'body': ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				'brand': {
