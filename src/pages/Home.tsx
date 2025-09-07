@@ -20,11 +20,11 @@ const Home = () => {
   const borderOpacity = Math.min(scrollY / 200, 1); // Border appears over 200px of scroll
   const shadowOpacity = Math.min(scrollY / 200, 1); // Shadow appears over 200px of scroll
   return (
-    <div className="min-h-screen w-full bg-white text-gray-900">
+    <div className="min-h-screen w-full bg-white text-gray-900 font-primary">
       {/* Floating Pill Navbar */}
-      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-7xl px-8">
+      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-[95vw] px-8">
         <div 
-          className="bg-white/90 backdrop-blur-md rounded-full px-16 py-4 transition-all duration-300"
+          className="bg-white/90 backdrop-blur-md rounded-2xl px-16 py-4 transition-all duration-300"
           style={{
             border: `1px solid rgba(156, 163, 175, ${borderOpacity})`,
             boxShadow: `0 10px 15px -3px rgba(0, 0, 0, ${shadowOpacity * 0.1}), 0 4px 6px -2px rgba(0, 0, 0, ${shadowOpacity * 0.05})`
@@ -43,7 +43,7 @@ const Home = () => {
                   </svg>
                 </div>
               </div>
-              <div className="font-bold text-xl text-gray-900">Finance</div>
+              <div className="font-bold text-xl text-gray-900">Koda</div>
             </div>
             
             {/* Navigation Links - Closer to left */}
@@ -90,8 +90,7 @@ const Home = () => {
           Student finance <br /> management for <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">smart students</span>
         </h1>
         <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Take control of your finances like a pro. Track expenses, manage budgets, 
-          make goals and build better habits while you study.
+          Take control of your finances easily. Track expenses, manage budgets, make goals and build better habits while you study!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <Link to="/login" className="transition-all duration-500 hover:scale-105 hover:-translate-y-1">
@@ -103,31 +102,18 @@ const Home = () => {
             Watch demo
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="text-2xl font-bold text-gray-900 mb-1">$1,250</div>
-            <p className="text-sm text-gray-600">Savings this month</p>
-            <div className="flex items-center mt-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-              <span className="text-xs text-green-600 font-medium">+12% from last month</span>
-            </div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="text-2xl font-bold text-gray-900 mb-1">$348</div>
-            <p className="text-sm text-gray-600">Budget remaining</p>
-            <div className="flex items-center mt-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-              <span className="text-xs text-blue-600 font-medium">On track</span>
-            </div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="text-2xl font-bold text-gray-900 mb-1">4.9/5</div>
-            <p className="text-sm text-gray-600">Student rating</p>
-            <div className="flex items-center mt-2">
-              <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
-              <span className="text-xs text-yellow-600 font-medium">Excellent</span>
-            </div>
-          </div>
+        <div className="text-center">
+          <p className="text-sm text-gray-500">
+            Made by{" "}
+            <a 
+              href="https://kaificial.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-green-600 hover:text-green-700 transition-colors duration-300 font-medium"
+            >
+              Kai
+            </a>
+          </p>
         </div>
       </section>
 
@@ -202,58 +188,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats section */}
-      <section className="py-24 px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/40 via-white/60 to-emerald-50/40"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-100/20 via-transparent to-transparent"></div>
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="bg-white/50 backdrop-blur-md border border-white/30 rounded-3xl p-8 shadow-lg">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                Trusted by students worldwide
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join thousands of students who are already building better financial habits
-              </p>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <DollarSign className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-3xl font-bold mb-2 text-gray-900">$2.5M+</h3>
-              <p className="text-gray-600 mb-3">Saved by Students</p>
-              <div className="flex items-center justify-center">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm text-green-600 font-medium">Growing daily</span>
-              </div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Users className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-3xl font-bold mb-2 text-gray-900">50K+</h3>
-              <p className="text-gray-600 mb-3">Active Students</p>
-              <div className="flex items-center justify-center">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm text-blue-600 font-medium">Across 100+ universities</span>
-              </div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Star className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-3xl font-bold mb-2 text-gray-900">4.9/5</h3>
-              <p className="text-gray-600 mb-3">Student Rating</p>
-              <div className="flex items-center justify-center">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm text-yellow-600 font-medium">Excellent reviews</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Benefits section */}
       <section id="benefits" className="py-24 px-8 max-w-7xl mx-auto relative">
@@ -326,31 +260,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Call to action */}
-      <section className="py-24 px-8 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-600/90 to-emerald-600/90"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-12 shadow-2xl">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Start managing your finances today
-            </h2>
-            <p className="text-xl text-green-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of students who are already building better financial habits.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/login" className="transition-all duration-500 hover:scale-105 hover:-translate-y-1">
-                <Button size="lg" className="bg-white/90 backdrop-blur-sm text-green-600 hover:bg-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border border-white/20">
-                  Get started free
-                </Button>
-              </Link>
-              <Button size="lg" variant="outline" className="border-2 border-white/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:shadow-lg">
-                Watch demo
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="py-16 px-8 relative overflow-hidden">
@@ -368,11 +277,11 @@ const Home = () => {
                   </svg>
                 </div>
               </div>
-              <p className="font-bold text-lg">Finance</p>
+              <p className="font-bold text-lg">Koda</p>
             </div>
             <p className="text-gray-600 mb-6">Everything you need to manage your finances as a student.</p>
             <div className="text-xs text-gray-400">
-              Finance Dashboard
+              Koda 
             </div>
           </div>
         </div>

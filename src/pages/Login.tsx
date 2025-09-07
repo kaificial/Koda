@@ -109,7 +109,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative font-primary">
       {/* Home page in background */}
       <Home />
       
@@ -129,7 +129,7 @@ const Login = () => {
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-8 scale-95'
         }`}>
-          <Card className="bg-white/95 backdrop-blur-md border border-white/20 shadow-2xl">
+          <Card className="bg-white/95 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl">
             <CardHeader className="text-center relative">
               {/* Close button */}
               <Button
@@ -144,7 +144,7 @@ const Login = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Shield className="w-8 h-8 text-green-600" />
               </div>
-              <CardTitle className="text-2xl text-gray-900">Welcome to Finance Dashboard</CardTitle>
+              <CardTitle className="text-2xl text-gray-900">Welcome to Koda</CardTitle>
               <CardDescription className="text-gray-600">
                 Sign in to your account or create a new one
               </CardDescription>
