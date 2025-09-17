@@ -4,6 +4,10 @@
     "version": "1.0.0",
     "description": "Smart money management for students - track expenses, manage budgets, and build better financial habits",
     "type": "module",
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
