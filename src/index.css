@@ -1,24 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom animations */
 @keyframes subtle-glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.7), 0 0 24px rgba(34, 197, 94, 0.5), 0 0 36px rgba(34, 197, 94, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.8), 0 0 30px rgba(34, 197, 94, 0.6);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.9), 0 0 40px rgba(34, 197, 94, 0.7), 0 0 60px rgba(34, 197, 94, 0.5), 0 0 80px rgba(34, 197, 94, 0.3);
   }
 }
 
 .animate-subtle-glow {
   animation: subtle-glow 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6));
 }
 
-/* Floating animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -60,7 +59,6 @@
   animation-delay: 4s;
 }
 
-/* Fade in up animations */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -106,7 +104,6 @@
   animation-fill-mode: both;
 }
 
-/* Gradient animation */
 @keyframes gradient {
   0%, 100% {
     background-position: 0% 50%;
@@ -121,7 +118,6 @@
   animation: gradient 3s ease infinite;
 }
 
-/* Cube floating animations */
 @keyframes float-cube-1 {
   0%, 100% { transform: translateY(0px) rotate(12deg); }
   50% { transform: translateY(-20px) rotate(12deg); }
@@ -219,11 +215,9 @@
 .animate-float-cube-15 { animation: float-cube-15 3.4s ease-in-out infinite; }
 .animate-float-cube-16 { animation: float-cube-16 2.7s ease-in-out infinite; }
 
-/* Minimal UI Design System */
 
 @layer base {
   :root {
-    /* Minimal UI Dark Theme */
     --bg: #0f1113;
     --panel: #141518;
     --muted: #9aa0a6;
@@ -233,7 +227,6 @@
     --glass: rgba(255,255,255,0.02);
     --glass-2: rgba(255,255,255,0.03);
 
-    /* Legacy support for existing components */
     --background: 220 15% 8%;
     --background-secondary: 220 12% 12%;
     --background-tertiary: 220 10% 16%;
@@ -247,7 +240,6 @@
     --popover: 220 12% 12%;
     --popover-foreground: 220 8% 95%;
 
-    /* Minimal UI Green Primary */
     --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
 
@@ -260,7 +252,6 @@
     --accent: 142 76% 36%;
     --accent-foreground: 0 0% 100%;
 
-    /* Minimal UI Semantic Colors */
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
 
@@ -276,21 +267,17 @@
 
     --radius: 0.5rem;
 
-    /* Minimal UI Gradients */
     --gradient-card: linear-gradient(135deg, #0f1114, #0c0d0f);
     --gradient-primary: linear-gradient(135deg, #16a34a, #059669);
     --gradient-success: linear-gradient(135deg, #10B981, #06B6D4);
     --gradient-chart: linear-gradient(180deg, rgba(22, 163, 74, 0.28), transparent);
 
-    /* Minimal UI Shadows */
     --shadow-card: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
     --shadow-primary: 0 0 40px rgba(22, 163, 74, 0.2);
 
-    /* Minimal UI Animations */
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    /* Sidebar Colors */
     --sidebar-background: 220 15% 8%;
     --sidebar-foreground: 220 8% 95%;
     --sidebar-primary: 142 76% 36%;
@@ -302,7 +289,6 @@
   }
 
   .dark {
-    /* Uvodo Dark Theme */
     --background: 210 11% 15%;
     --background-secondary: 210 11% 18%;
     --background-tertiary: 210 11% 22%;
@@ -355,6 +341,7 @@
 @layer base {
   * {
     border-color: hsl(var(--border));
+    font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   html {
@@ -366,11 +353,25 @@
     color: #e6e6e9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .font-display {
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  .font-primary {
+    letter-spacing: -0.01em;
   }
 }
 
-/* Minimal UI Custom Styles */
 @layer components {
   .minimal-sidebar {
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));

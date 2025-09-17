@@ -22,8 +22,9 @@ const Login = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Trigger animation on mount
-    const timer = setTimeout(() => setIsVisible(true), 10);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,7 +34,6 @@ const Login = () => {
     setError("");
 
     if (isSignUp) {
-      // Sign up validation
       if (!fullName || !email || !password || !confirmPassword) {
         setError("Please fill in all fields");
         setIsLoading(false);
@@ -52,7 +52,6 @@ const Login = () => {
         return;
       }
     } else {
-      // Sign in validation
       if (!email || !password) {
         setError("Please enter both email and password");
         setIsLoading(false);
@@ -60,26 +59,23 @@ const Login = () => {
       }
     }
 
-    // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // Store demo auth state
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("userEmail", email);
       localStorage.setItem("userName", fullName || "Demo User");
-      navigate("/dashboard");
+      navigate("/setup");
     }, 1000);
   };
 
   const handleDemoLogin = () => {
     setEmail("demo@example.com");
     setPassword("demo123");
-    // Auto-login after setting demo credentials
     setTimeout(() => {
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("userEmail", "demo@example.com");
       localStorage.setItem("userName", "Demo User");
-      navigate("/dashboard");
+      navigate("/setup");
     }, 500);
   };
 
@@ -95,7 +91,6 @@ const Login = () => {
     setIsTransitioning(true);
     clearForm();
     
-    // Wait for fade out animation, then change mode and fade back in
     setTimeout(() => {
       setIsSignUp(!isSignUp);
       setIsTransitioning(false);
@@ -104,34 +99,28 @@ const Login = () => {
 
   const handleClose = () => {
     setIsVisible(false);
-    // Wait for animation to complete before navigating
     setTimeout(() => navigate("/"), 300);
   };
 
   return (
     <div className="relative font-primary">
-      {/* Home page in background */}
       <Home />
       
-      {/* Modal overlay */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        {/* Backdrop */}
         <div 
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 ease-out ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={handleClose}
         />
         
-        {/* Modal card */}
-        <div className={`relative w-full max-w-md transition-all duration-300 ${
+        <div className={`relative w-full max-w-md transition-all duration-300 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-8 scale-95'
         }`}>
           <Card className="bg-white/95 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl">
             <CardHeader className="text-center relative">
-              {/* Close button */}
               <Button
                 variant="ghost"
                 size="sm"
@@ -150,11 +139,10 @@ const Login = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {/* Toggle Buttons */}
-              <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+ Toggle Buttons               <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
                 <button
                   type="button"
-                  onClick={() => setIsSignUp(false)}
+                  onClick={() => !isSignUp || toggleMode()}
                   className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-300 ${
                     !isSignUp 
                       ? 'bg-white text-green-600 shadow-sm' 
@@ -166,7 +154,7 @@ const Login = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setIsSignUp(true)}
+                  onClick={() => isSignUp || toggleMode()}
                   className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-300 ${
                     isSignUp 
                       ? 'bg-white text-green-600 shadow-sm' 
@@ -178,10 +166,14 @@ const Login = () => {
                 </button>
               </div>
 
-              <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+              <div className={`transition-all duration-300 ease-out ${
+                isTransitioning 
+                  ? 'opacity-0 translate-y-2 scale-98' 
+                  : 'opacity-100 translate-y-0 scale-100'
+              }`}>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {isSignUp && (
-                    <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
+                    <div className="space-y-2 ">
                       <Label htmlFor="fullName" className="text-gray-700 font-medium">
                         Full Name
                       </Label>
@@ -243,7 +235,7 @@ const Login = () => {
                   </div>
 
                   {isSignUp && (
-                    <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
+                    <div className="space-y-2 ">
                       <Label htmlFor="confirmPassword" className="text-gray-700 font-medium">
                         Confirm Password
                       </Label>
@@ -294,7 +286,11 @@ const Login = () => {
               </div>
 
               {!isSignUp && (
-                <div className={`mt-6 transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                <div className={`mt-6 transition-all duration-300 ease-out ${
+                  isTransitioning 
+                    ? 'opacity-0 translate-y-2 scale-98' 
+                    : 'opacity-100 translate-y-0 scale-100'
+                }`}>
                   <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                       <span className="w-full border-t border-gray-300" />
@@ -315,7 +311,11 @@ const Login = () => {
               )}
 
               {!isSignUp && (
-                <div className={`mt-6 p-4 bg-green-50 border border-green-200 rounded-lg transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                <div className={`mt-6 p-4 bg-green-50 border border-green-200 rounded-lg transition-all duration-300 ease-out ${
+                  isTransitioning 
+                    ? 'opacity-0 translate-y-2 scale-98' 
+                    : 'opacity-100 translate-y-0 scale-100'
+                }`}>
                   <h4 className="text-green-800 font-semibold mb-2">Demo Credentials:</h4>
                   <p className="text-gray-700 text-sm">
                     Email: <span className="text-green-600 font-medium">demo@example.com</span><br />

@@ -17,10 +17,11 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'primary': ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-				'secondary': ['Inter', 'system-ui', 'sans-serif'],
-				'display': ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-				'body': ['Inter', 'system-ui', 'sans-serif'],
+				'primary': ['Space Grotesk', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				'secondary': ['Space Grotesk', 'Inter', 'sans-serif'],
+				'display': ['Space Grotesk', 'Inter', 'sans-serif'],
+				'body': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+				'mono': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
 			},
 			colors: {
 				'brand': {
@@ -193,6 +194,12 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			letterSpacing: {
+				'tight': '-0.025em',
+				'tighter': '-0.05em',
+				'wide': '0.025em',
+				'wider': '0.05em',
 			},
 			keyframes: {
 				'accordion-down': {
