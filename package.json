@@ -1,7 +1,8 @@
 {
-    "name": "vite_react_shadcn_ts",
+    "name": "koda-finance",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
+    "description": "Smart money management for students - track expenses, manage budgets, and build better financial habits",
     "type": "module",
     "scripts": {
         "dev": "vite",
